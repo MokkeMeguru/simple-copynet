@@ -2,3 +2,5 @@
 /st-data/
 /venv/
 /model/test-model/
+/.idea/
+/__pycache__/
