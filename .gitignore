@@ -4,3 +4,4 @@
 /model/test-model/
 /.idea/
 /__pycache__/
+*/__pycache__/
