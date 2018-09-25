@@ -1,0 +1,163 @@
+training model_name with use_cuda=test-model, batch_size=True
+teacher_forcing_schedule=[1.         0.93333333 0.86666667 0.8        0.73333333 0.66666667
+ 0.6        0.53333333 0.46666667 0.4        0.33333333 0.26666667
+ 0.2        0.13333333 0.06666667]
+keep_prob=1.0, val_size=0.1, lr=0.001, vocab_limit=200, hidden_size=64, embedding_size=64, max_length=30, seed=14
+creating trainign and validation datasets
+vocab_limit 200
+creating encoder-decoder model
+  0%|          | 0/14 [00:00<?, ?it/s]epoch 0
+100%|██████████| 14/14 [00:07<00:00,  2.16it/s]
+C:\Users\elect\PycharmProjects\copynet-\venv\lib\site-packages\torch\nn\functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='none' instead.
+  warnings.warn(warning.format(ret))
+  0%|          | 0/2 [00:00<?, ?it/s]C:\Users\elect\PycharmProjects\copynet-\evaluate.py:19: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  input_variable = Variable(input_idxs[order, :][:, :max(input_lengths)], volatile=True)
+100%|██████████| 2/2 [00:00<00:00,  6.10it/s]
+=> <SOS><EOS>
+val loss: 1.3768250302584835
+  0%|          | 0/14 [00:00<?, ?it/s]----------------------------------------------------------------------------------------------------
+epoch 1
+100%|██████████| 14/14 [00:05<00:00,  2.57it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.18it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS><EOS>
+val loss: 1.6701401193176246
+----------------------------------------------------------------------------------------------------
+epoch 2
+100%|██████████| 14/14 [00:06<00:00,  2.22it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.59it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS><EOS>
+val loss: 2.0138322572335623
+  0%|          | 0/14 [00:00<?, ?it/s]----------------------------------------------------------------------------------------------------
+epoch 3
+100%|██████████| 14/14 [00:05<00:00,  2.42it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.44it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS><EOS>
+val loss: 2.38712638357967
+  0%|          | 0/14 [00:00<?, ?it/s]----------------------------------------------------------------------------------------------------
+epoch 4
+100%|██████████| 14/14 [00:05<00:00,  2.55it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.29it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。<EOS>
+val loss: 2.678026606021817
+  0%|          | 0/14 [00:00<?, ?it/s]----------------------------------------------------------------------------------------------------
+epoch 5
+100%|██████████| 14/14 [00:05<00:00,  2.28it/s]
+100%|██████████| 2/2 [00:00<00:00,  5.67it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。<EOS>
+val loss: 3.14565899013563
+  0%|          | 0/14 [00:00<?, ?it/s]----------------------------------------------------------------------------------------------------
+epoch 6
+100%|██████████| 14/14 [00:05<00:00,  2.31it/s]
+100%|██████████| 2/2 [00:00<00:00,  5.69it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。。<EOS>
+val loss: 3.4954537455996784
+----------------------------------------------------------------------------------------------------
+epoch 7
+100%|██████████| 14/14 [00:05<00:00,  2.56it/s]
+ 50%|█████     | 1/2 [00:00<00:00,  6.64it/s]warning: Embedding dir exists, did you set global_step for add_embedding()?
+100%|██████████| 2/2 [00:00<00:00,  6.67it/s]
+=> <SOS>おはよう。。<EOS>
+val loss: 3.84233443486346
+----------------------------------------------------------------------------------------------------
+epoch 8
+100%|██████████| 14/14 [00:05<00:00,  2.36it/s]
+100%|██████████| 2/2 [00:00<00:00,  5.46it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。。<UNK><UNK><UNK>ねねねねねねねねねねねねねねねねねねねねねね
+val loss: 4.043395364413103
+----------------------------------------------------------------------------------------------------
+epoch 9
+100%|██████████| 14/14 [00:05<00:00,  2.49it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.77it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。。<EOS>
+val loss: 4.364338522490761
+----------------------------------------------------------------------------------------------------
+epoch 10
+100%|██████████| 14/14 [00:05<00:00,  2.53it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.39it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。。<UNK><UNK><UNK>ねねねねねねねねねねねねねねねねねねねねねね
+val loss: 4.833878778687308
+  0%|          | 0/14 [00:00<?, ?it/s]----------------------------------------------------------------------------------------------------
+epoch 11
+100%|██████████| 14/14 [00:05<00:00,  2.46it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.60it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。。<EOS>
+val loss: 5.016820011983433
+----------------------------------------------------------------------------------------------------
+epoch 12
+100%|██████████| 14/14 [00:05<00:00,  2.49it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.50it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。<EOS>
+val loss: 5.320059185253979
+  0%|          | 0/14 [00:00<?, ?it/s]----------------------------------------------------------------------------------------------------
+epoch 13
+100%|██████████| 14/14 [00:05<00:00,  2.47it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.61it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。<EOS>
+val loss: 5.920293800408185
+----------------------------------------------------------------------------------------------------
+epoch 14
+100%|██████████| 14/14 [00:05<00:00,  2.59it/s]
+100%|██████████| 2/2 [00:00<00:00,  6.71it/s]
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+=> <SOS>おはよう。。<EOS>
+val loss: 6.032016426933169
+----------------------------------------------------------------------------------------------------
+
+input=>こんにちは
+
+=><SOS>こんにちは<EOS>
+
+
+input=>おはようございます
+
+=><SOS>おはよう<EOS>
+
+
+input=>今日は良い天気ですね
+
+=><SOS>今日は良い天気天気天気天気<UNK><UNK><UNK>ねねよねよねねよねねよねねよねねよねね
+
+
+input=>今日は良い天気ですね。
+
+=><SOS>今日は良い天気天気天気天気<UNK><UNK><UNK>ねねよねよねねよねねよねねよねねよねね
+
+
+input=>元気ですか？
+
+=><SOS>元気か？？？？<UNK><UNK><UNK><UNK>ねねねねねねねねねねねねねねねねねねね
+
+
+input=>お腹が空きました。
+
+=><SOS>お腹ががたたた<UNK><UNK><UNK>ねねねねねねねねねねねねねねねねねねねね
+
+
+input=>綺麗な青空ですね。
+
+=><SOS>綺麗な青空青空ねね<UNK><UNK><UNK><UNK>ねねよねよねねよねねよねねよねねよねね
+
+
+input=>いってきます。
+
+=><SOS>いってきききき<UNK><UNK><UNK><UNK>ねねねねねねねねねねねねねねねねねねね
+
+
+input=>Quit
+
+=><SOS>Quit<EOS>
+
+
+Note: normal
