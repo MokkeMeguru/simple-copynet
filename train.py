@@ -178,11 +178,8 @@ if __name__ == '__main__':
     parser_.add_argument('--val_size', type=float, default=0.1,
                          help='fraction of data to use for validation')
 
-    parser_.add_argument('--lr', type=float, default=0.001,
+    parser_.add_argument('--lr', type=float, default=0.0005,
                          help='Learning rate.')
-
-    parser_.add_argument('--decoder_type', type=str, default='copy',
-                         help="Allowed values 'copy' or 'attn'")
 
     parser_.add_argument('--vocab_limit', type=int, default=150,
                          help='When creating a new Language object the vocab'
