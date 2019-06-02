@@ -6,6 +6,6 @@
 /__pycache__/
 */__pycache__/
 /.venv/
-/model/sample-model/
+/model/sample_model/
 .ipynb_checkpoints/
 sample_logs

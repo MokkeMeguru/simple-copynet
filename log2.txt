@@ -383,3 +383,15 @@ Process finished with exit code 0
 
 Note: add 。 => word_index : 4
       add 、 => word_index : 5
+
+
+
+
+
+
+
+
+
+
+
+

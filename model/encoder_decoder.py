@@ -43,7 +43,7 @@ class EncoderDecoder(nn.Module):
                                                      teacher_forcing=teacher_forcing)
         return decoder_outputs, sampled_idxs
 
-    def get_response(self, input_string):
+    def get_response(self, input_string, remove=False):
         """
 
         :param input_string: input string = sentence
@@ -60,6 +60,8 @@ class EncoderDecoder(nn.Module):
         idxs = idxs.data.view(-1)
         eos_idx = list(idxs).index(2) if 2 in list(idxs) else len(idxs)
         output_string = self.spDataset.seq_to_string(idxs[:eos_idx + 1], input_tokens=input_tokens)
+        if remove:
+            output_string = output_string.strip('<SOS>').strip('<EOS>').strip('<UNK>')
         return output_string
 
     def interactive(self, unsmear):

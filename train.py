@@ -26,7 +26,8 @@ def train(encoder_decoder: EncoderDecoder,
           keep_prob,
           teacher_forcing_schedule,
           lr,
-          max_length):
+          max_length,
+          writer):
     global_step = 0
     loss_function = torch.nn.NLLLoss(ignore_index=0)
     optimizer = optim.Adam(encoder_decoder.parameters(), lr=lr)
@@ -49,6 +50,7 @@ def train(encoder_decoder: EncoderDecoder,
             batch_size = input_variable.shape[0]
             flattened_outputs = output_log_probs.view(batch_size * max_length, -1)
             batch_loss = loss_function(flattened_outputs, target_variable.contiguous().view(-1))
+            writer.add_scalar('train_loss', batch_loss, global_step=global_step)
             batch_loss.backward()
             optimizer.step()
             batch_outputs = trim_seqs(output_seqs)
@@ -56,7 +58,7 @@ def train(encoder_decoder: EncoderDecoder,
             if (global_step < 10) or \
                     (global_step % 10 == 0 and global_step < 100) or \
                     (global_step % 100 == 0 and epoch < 2):
-                input_string = '良い天気ですね。'
+                input_string = 'おはようございます。'
                 output_string = encoder_decoder.get_response(input_string)
                 writer.add_text('example:', output_string, global_step=global_step)
             if global_step % 100 == 0:
@@ -83,7 +85,7 @@ def train(encoder_decoder: EncoderDecoder,
 def main(model_name, data_list,
          use_cuda, batch_size, teacher_forcing_schedule,
          keep_prob, val_size, lr, vocab_limit, hidden_size,
-         embedding_size, max_length, seed=14, interact=True):
+         embedding_size, max_length, writer, seed=14, interact=True):
     model_path = './model/' + model_name + '/'
     print('training model_name with use_cuda={}, batch_size={}'
           .format(model_name, use_cuda, batch_size), flush=True)
@@ -148,7 +150,8 @@ def main(model_name, data_list,
           keep_prob,
           teacher_forcing_schedule,
           lr,
-          encoder_decoder.decoder.max_length)
+          encoder_decoder.decoder.max_length,
+          writer)
     if interact:
         encoder_decoder.interactive(False)
 
@@ -158,30 +161,30 @@ if __name__ == '__main__':
     data_list = reader.read_files('./st-data/base.csv', './st-data/styled.csv', parser.get_word_list)
 
     parser_ = argparse.ArgumentParser(description='Parse training parameters')
-    parser_.add_argument('--model_name', type=str, default='test-model',
+    parser_.add_argument('--model_name', type=str, default='model',
                          help=('the name of subdirectory of ./model/ that' +
                                'contains encoder and decoder model files'))
-    parser_.add_argument('--epochs', type=int, default=50,
+    parser_.add_argument('--epochs', type=int, default=300,
                          help='the number of epochs to train')
     parser_.add_argument('--use_cuda', action='store_true', default='True',
                          help='flag indicating that cuda will be used')
-    parser_.add_argument('--batch_size', type=int, default=150,
+    parser_.add_argument('--batch_size', type=int, default=200,
                          help='number of examples in a batch')
     parser_.add_argument('--teacher_forcing_fraction', type=float, default=0.4,
                          help='fraction of batches that will use teacher forcing during training')
     parser_.add_argument('--scheduled_teacher_forcing', action='store_true', default=1.0,
                          help=('Linearly decrease the teacher forcing fraction' +
                                ' from 1.0 to 0.0 over the specified number of epochs'))
-    parser_.add_argument('--keep_prob', type=float, default=1.0,
+    parser_.add_argument('--keep_prob', type=float, default=0.2,
                          help='Probability of keeping an element in the dropout step.')
 
     parser_.add_argument('--val_size', type=float, default=0.1,
                          help='fraction of data to use for validation')
 
-    parser_.add_argument('--lr', type=float, default=0.0005,
+    parser_.add_argument('--lr', type=float, default=0.001,
                          help='Learning rate.')
 
-    parser_.add_argument('--vocab_limit', type=int, default=150,
+    parser_.add_argument('--vocab_limit', type=int, default=250,
                          help='When creating a new Language object the vocab'
                               'will be truncated to the most frequently'
                               'occurring words in the training dataset.')
@@ -190,7 +193,7 @@ if __name__ == '__main__':
                          help='The number of RNN units in the encoder. 2x this '
                               'number of RNN units will be used in the decoder')
 
-    parser_.add_argument('--embedding_size', type=int, default=64,
+    parser_.add_argument('--embedding_size', type=int, default=8,
                          help='Embedding size used in both encoder and decoder')
 
     parser_.add_argument('--max_length', type=int, default=30,
@@ -203,10 +206,12 @@ if __name__ == '__main__':
         schedule = np.arange(1.0, 0.0, -1.0 / args.epochs)
     else:
         schedule = np.ones(args.epochs) * args.teacher_forcing_fraction
-
-    main(args.model_name, data_list,
-         args.use_cuda, args.batch_size,
-         schedule, args.keep_prob, args.val_size,
-         args.lr, args.vocab_limit,
-         args.hidden_size,
-         args.embedding_size, args.max_length)
+    #
+    # main(args.model_name, data_list,
+    #      args.use_cuda, args.batch_size,
+    #      schedule, args.keep_prob, args.val_size,
+    #      args.lr, args.vocab_limit,
+    #      args.hidden_size,
+    #      args.embedding_size, args.max_length, writer)
+    encoder_decoder_for_inter = torch.load('./model/test-model/' + 'test-model' + '_199' + '.pt')
+    encoder_decoder_for_inter.interactive(False)
