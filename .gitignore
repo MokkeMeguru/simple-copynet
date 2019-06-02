@@ -5,3 +5,7 @@
 /.idea/
 /__pycache__/
 */__pycache__/
+/.venv/
+/model/sample-model/
+.ipynb_checkpoints/
+sample_logs
